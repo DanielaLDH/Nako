@@ -9,6 +9,7 @@ public class HealthPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log(healthAmount);
             // Aplica o aumento de vida ao jogador
             other.GetComponent<Player>().IncreaseHealth(healthAmount);
 

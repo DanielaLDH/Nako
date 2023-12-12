@@ -19,7 +19,6 @@ public class Health : MonoBehaviour
     void Update()
     {
         Vida = player.health;
-        Debug.Log(Vida);
         Barra.fillAmount = Vida/100;
     }
 }

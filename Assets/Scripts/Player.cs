@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         HandleMovementInput();
-        RotateTowardsMouse();
+       // RotateTowardsMouse();
     }
 
     void HandleMovementInput()
@@ -80,9 +80,11 @@ public class Player : MonoBehaviour
 
     public void IncreaseHealth(int amount)
     {
-        if (health < 10) 
+        if (health < 100) 
         {
             health += amount;
+          
+            Debug.Log(health);
         }
     }
 

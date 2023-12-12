@@ -1127,6 +1127,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 704567044}
   Barra: {fileID: 1512509163}
+--- !u!1 &597007486 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 172288092596268020, guid: 925213678bdf5ae4f9e5c19d33841344, type: 3}
+  m_PrefabInstance: {fileID: 7267000964434218263}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &692727881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,12 +1212,47 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3476439603897637477, guid: 925213678bdf5ae4f9e5c19d33841344, type: 3}
   m_PrefabInstance: {fileID: 7267000964434218263}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 597007486}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68298c04a5095b644993099ef1bd29a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &704567049
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597007486}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.99, y: -1.5686028}
+  serializedVersion: 2
+  m_Radius: 6.288632
 --- !u!1 &887462503
 GameObject:
   m_ObjectHideFlags: 0
@@ -1587,7 +1627,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.55, y: 17.91, z: 0}
   m_LocalScale: {x: 1.3393, y: 1.3393, z: 1.3393}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3590,7 +3630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7379329185725579072, guid: f28ca0c5c21bcab4581b57dce0945a0f, type: 3}
-  numberOfEnemies: 15
+  numberOfEnemies: 10
   spawnRadius: 5
   spawnInterval: 5
 --- !u!1 &1875012997
@@ -4044,6 +4084,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1700324249104898881, guid: 925213678bdf5ae4f9e5c19d33841344, type: 3}
+      propertyPath: m_SleepingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476439603897637477, guid: 925213678bdf5ae4f9e5c19d33841344, type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3476439603897637477, guid: 925213678bdf5ae4f9e5c19d33841344, type: 3}
       propertyPath: health
       value: 100
@@ -4104,10 +4152,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7066005116418742111, guid: 925213678bdf5ae4f9e5c19d33841344, type: 3}
+      propertyPath: m_Size.x
+      value: 12.986933
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066005116418742111, guid: 925213678bdf5ae4f9e5c19d33841344, type: 3}
+      propertyPath: m_Offset.x
+      value: -1.0301268
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7066005116418742111, guid: 925213678bdf5ae4f9e5c19d33841344, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 172288092596268020, guid: 925213678bdf5ae4f9e5c19d33841344, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 704567049}
   m_SourcePrefab: {fileID: 100100000, guid: 925213678bdf5ae4f9e5c19d33841344, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
