@@ -10,10 +10,14 @@ public class Enemy : MonoBehaviour
     public GameObject healthPickupPrefab;
 
     private Transform player;
+    private NextLevel nextLevel;// Referência para a classe NextLevel
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        // Obtém a referência para a classe NextLevel
+        nextLevel = FindObjectOfType<NextLevel>();
 
     }
 
@@ -36,7 +40,13 @@ public class Enemy : MonoBehaviour
         health -= dmg;
         if (health <= 0)
         {
+            // Notifica a classe NextLevel sobre a morte do inimigo
+            nextLevel.OnEnemyDeath();
+
+            // Instancia o objeto de coleta de saúde
             Instantiate(healthPickupPrefab, transform.position, Quaternion.identity);
+
+            // Destrói o inimigo
             Destroy(gameObject);
         }
     }

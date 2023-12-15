@@ -26,7 +26,7 @@ public class PowerUps : MonoBehaviour
         player.health += 5;
         powerUps.SetActive(false);
         Time.timeScale = 1f;
-
+        bullet.damage = bullet.setDamage;
     }
 
     public void SpeedUp()
@@ -34,13 +34,14 @@ public class PowerUps : MonoBehaviour
         player.speed += 5;
         powerUps.SetActive(false);
         Time.timeScale = 1f;
+        bullet.damage = bullet.setDamage;
 
 
     }
 
     public void DamageUp() 
     {
-        bullet.damage += 5;
+        bullet.damage = bullet.setDamage + 1;
         powerUps.SetActive(false);
         Time.timeScale = 1f;
 

@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Bullet : MonoBehaviour
 {
     public int damage;
+    public int setDamage;
+ 
 
     public void SetDamage(int amount)
     {
@@ -20,6 +23,16 @@ public class Bullet : MonoBehaviour
 
             // Destroi a bala
            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        Scene cenaAtual = SceneManager.GetActiveScene();
+        int nmrCena = cenaAtual.buildIndex;
+        if (nmrCena == 1) 
+        {
+            damage = setDamage;
         }
     }
 }
