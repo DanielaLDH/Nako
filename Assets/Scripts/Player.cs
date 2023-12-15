@@ -13,20 +13,24 @@ public class Player : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject gameOver;
 
+    private PlayerAudio playerAudio;
+
 
     private bool recovery;
 
     // Start is called before the first frame update
     void Start()
     {
-       
+        playerAudio = GetComponent<PlayerAudio>();
     }
 
     private void Update()
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            playerAudio.PlaySFX(playerAudio.attackSound);
             Shoot();
+
         }
 
 
@@ -36,7 +40,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         HandleMovementInput();
-       // RotateTowardsMouse();
+        RotateTowardsMouse();
     }
 
     void HandleMovementInput()
@@ -44,9 +48,18 @@ public class Player : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector2 movement = new Vector2(horizontalInput * speed * Time.deltaTime, verticalInput * speed * Time.deltaTime);
+        // Calcula o vetor de movimento com base na orientação do sprite
+        Vector2 movement = new Vector2(horizontalInput, verticalInput);
 
-        transform.Translate(movement);
+        // Normaliza o vetor de movimento para garantir que a diagonal não seja mais rápida
+        movement.Normalize();
+
+        Vector3 globalMovement = transform.TransformDirection(movement);
+
+
+        // Move o jogador
+        transform.Translate(globalMovement * speed * Time.deltaTime);
+
     }
 
     void RotateTowardsMouse()
@@ -54,27 +67,39 @@ public class Player : MonoBehaviour
         Vector3 mousePos = Input.mousePosition;
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
-        Vector2 direction = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
-
-        transform.up = Vector2.Lerp(transform.up, direction, rotationSpeed * Time.deltaTime);
-    }
-
-    public void OnHit(int dmg)
-    {
-        //anim
-        health -= dmg;
-        //sound
-        if (health <= 0) 
+        // Flip o sprite na direção do mouse
+        if (mousePos.x < transform.position.x)
         {
-            Debug.Log("die");
-            recovery = true;
-            Time.timeScale = 1;
-            gameOver.SetActive(true);
-            
+
+            transform.eulerAngles = new Vector3(0, 0, 0);
         }
         else
         {
-            StartCoroutine(Recover());
+
+            transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+    }
+
+
+    public void OnHit(int dmg)
+    {
+        if (!recovery)
+        {
+            health -= dmg;
+            playerAudio.PlaySFX(playerAudio.dmgSound);
+            if (health <= 0)
+            {
+                Debug.Log("die");
+                recovery = true;
+                Time.timeScale = 1;
+                gameOver.SetActive(true);
+                Time.timeScale = 0f;
+
+            }
+            else
+            {
+                StartCoroutine(Recover());
+            }
         }
     }
 
@@ -82,6 +107,7 @@ public class Player : MonoBehaviour
     {
         if (health < 100) 
         {
+            playerAudio.PlaySFX(playerAudio.healthPickSound);
             health += amount;
           
             Debug.Log(health);

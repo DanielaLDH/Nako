@@ -24,6 +24,23 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         MoveTowardsPlayer();
+
+        if (player != null)
+        {
+           // Vector3 direction = player.position - transform.position;
+            
+            if (player.position.x > transform.position.x)
+            {
+                Debug.Log("normal");
+                transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+            else
+            {
+                Debug.Log("vira");
+
+                transform.eulerAngles = new Vector3(0, 180, 0);
+            }
+        }
     }
 
     void MoveTowardsPlayer()
@@ -31,7 +48,9 @@ public class Enemy : MonoBehaviour
         if (player != null)
         {
             Vector2 direction = (player.position - transform.position).normalized;
-            transform.Translate(direction * speed * Time.deltaTime);
+            Vector3 globalMovement = transform.TransformDirection(direction);
+
+            transform.Translate(globalMovement * speed * Time.deltaTime);
         }
     }
 
