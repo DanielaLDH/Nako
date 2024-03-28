@@ -32,7 +32,7 @@ public class Colisor : MonoBehaviour
         if (collision.CompareTag("Player")) 
         {
             player.transform.position = point.transform.position;
-            spawner.numberOfEnemies += numEnemy;
+           // spawner.numberOfEnemies += numEnemy;
             enemy.damage += damEnemy;
             enemy.speed += speEnemy;
         }

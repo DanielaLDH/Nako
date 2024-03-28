@@ -4628,10 +4628,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb89cc29f19d7be448ae2b23a1b5a3f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 7379329185725579072, guid: f28ca0c5c21bcab4581b57dce0945a0f, type: 3}
-  numberOfEnemies: 15
-  spawnRadius: 5
-  spawnInterval: 3
+  enemyPrefab_melee: {fileID: 7379329185725579072, guid: f28ca0c5c21bcab4581b57dce0945a0f, type: 3}
+  enemyPrefab_ranged: {fileID: 4490452274561259075, guid: 10ff1ced7e744c24db8175d5785e462c, type: 3}
+  waveInterval: 10
+  waves:
+  - numberOfEnemies_melee: 5
+    numberOfEnemies_ranged: 2
+    spawnInterval: 2
+  - numberOfEnemies_melee: 2
+    numberOfEnemies_ranged: 3
+    spawnInterval: 1
+  - numberOfEnemies_melee: 1
+    numberOfEnemies_ranged: 2
+    spawnInterval: 1
 --- !u!1 &1875012997
 GameObject:
   m_ObjectHideFlags: 0
